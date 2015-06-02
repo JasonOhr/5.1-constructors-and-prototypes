@@ -39,8 +39,31 @@ function expect(target) {
 // \___/\____/_/ /_/____/\__/_/   \__,_/\___/\__/\____/_/  /____/
 //
 // Only add code to *THIS* section!
-//sadie.status = 'normal';
-console.log('hello world');
+function Dog(attr){
+    this.color = 'black';
+    this.owner = null;
+    try{
+        this.hungry = attr['hungry']===undefined;
+    }catch(e){
+        this.hungry = true;
+    }
+}
+function Human(attr){
+    try{
+        this.cool = attr['cool']!==undefined?attr['cool']:false;
+    }catch (e){
+        this.cool = false;
+    }
+    this.pet = function(dog){
+        dog.status = 'happy';
+    };
+    this.feed = function(dog){
+        dog.hungry = false;
+    }
+}
+Dog.prototype.status = "normal";
+
+
 // ????????
 // ????????
 // ????????
@@ -53,17 +76,17 @@ console.log('hello world');
 // \__,_/\____/\__, /____/
 //            /____/
 
-//var sadie = new Dog({
-//    color: "black",
-//    hungry: false
-//});
-//
-//var moonshine = new Dog({
-//    color: "blue-red"
-//});
-//
-//var atticus = new Dog();
-//
+var sadie = new Dog({
+    color: "black",
+    hungry: false
+});
+
+var moonshine = new Dog({
+    color: "blue-red"
+});
+
+var atticus = new Dog();
+
 
 //     __
 //    / /_  __  ______ ___  ____ _____  _____
@@ -71,11 +94,11 @@ console.log('hello world');
 //  / / / / /_/ / / / / / / /_/ / / / (__  )
 // /_/ /_/\__,_/_/ /_/ /_/\__,_/_/ /_/____/
 
-//var mason = new Human();
-//
-//var julia = new Human({
-//    cool: true
-//});
+var mason = new Human();
+
+var julia = new Human({
+    cool: true
+});
 
 
 //                     __           __  __    _                             __
@@ -87,34 +110,34 @@ console.log('hello world');
 // Don't edit this section. Instead make these tests pass by writing
 // constructors in the constructor section above ;D
 
-//it("should make Sadie happy when Mason pets her", function(){
-//    expect(sadie.status).toBe('normal');
-//    mason.pet(sadie);
-//    expect(sadie.status).toBe('happy');
-//});
-//
-//it("should be default that Sadie is black", function(){
-//    expect(sadie.color).toBe('black');
-//});
-//
-//it("should be default that Moonshine is hungry and Sadie is not hungry", function(){
-//    expect(moonshine.hungry).toBe(true);
-//    expect(sadie.hungry).toBe(false);
-//});
-//
-//it("should make Moonshine no longer hungry when you feed him", function(){
-//    julia.feed(moonshine);
-//    expect(moonshine.hungry).toBe(false);
-//});
-//
-//
-//it("should not affect Atticus and Moonshine's owner properties when setting Mason as Sadie's owner ", function(){
-//    sadie.owner = mason;
-//    expect(moonshine.owner).toBe(null);
-//    expect(atticus.owner).toBe(null);
-//});
-//
-//it("should be default that Julia is cool and Mason is not cool", function(){
-//    expect(julia.cool).toBe(true);
-//    expect(mason.cool).toBe(false);
-//});
+it("should make Sadie happy when Mason pets her", function(){
+    expect(sadie.status).toBe('normal');
+    mason.pet(sadie);
+    expect(sadie.status).toBe('happy');
+});
+
+it("should be default that Sadie is black", function(){
+    expect(sadie.color).toBe('black');
+});
+
+it("should be default that Moonshine is hungry and Sadie is not hungry", function(){
+    expect(moonshine.hungry).toBe(true);
+    expect(sadie.hungry).toBe(false);
+});
+
+it("should make Moonshine no longer hungry when you feed him", function(){
+    julia.feed(moonshine);
+    expect(moonshine.hungry).toBe(false);
+});
+
+
+it("should not affect Atticus and Moonshine's owner properties when setting Mason as Sadie's owner ", function(){
+    sadie.owner = mason;
+    expect(moonshine.owner).toBe(null);
+    expect(atticus.owner).toBe(null);
+});
+
+it("should be default that Julia is cool and Mason is not cool", function(){
+    expect(julia.cool).toBe(true);
+    expect(mason.cool).toBe(false);
+});
